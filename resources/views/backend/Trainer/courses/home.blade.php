@@ -510,18 +510,18 @@ aria-hidden="true">
 
 
 <!-- footerbutton -->
-<div class="row mt-5">
-<div class="col-12 col-sm-8 mx-auto">
-<div class="row btn-row">
-<div class="col-12 col-sm-5">
-<button id="add_section" class="btn btn-w-100">+ Add Section</button>
-</div>
-<div class="col-12 col-sm-2 text-center">
-Or
-</div>
-<div class="col-12 col-sm-5">
-<button id="add_lesson" class="btn btn-w-100">+ Add Lession</button>
-</div>
+    <div class="row mt-5">
+    <div class="col-12 col-sm-8 mx-auto">
+    <div class="row btn-row">
+    <div class="col-12 col-sm-5">
+    <button id="add_section" class="btn btn-w-100">+ Add Section</button>
+    </div>
+    <div class="col-12 col-sm-2 text-center">
+    Or
+    </div>
+    <div class="col-12 col-sm-5">
+    <button id="add_lesson" class="btn btn-w-100">+ Add Lession</button>
+    </div>
 </div>
 </div>
 </div>
@@ -561,12 +561,12 @@ Or
         };
         swal({
             title: "Do you want to delete this Record",
-            text: "@lang('packages.delete_package_msg')",
-            type: 'info',
-            showCancelButton: true,
-            confirmButtonColor: '#F79426',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes',
+                text: "@lang('packages.delete_package_msg')",
+                type: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#F79426',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes',
             showLoaderOnConfirm: true
         }).then( ( result ) => {
             if ( result.value == true ) {
@@ -589,15 +589,17 @@ Or
 
     } );
  $(document).on('click', '#show_lessonss', function () {
-    var lesson_id = $(this).attr('class')
+    var lesson_id = $(this).attr('class');
+     $('#course_ids').val(lesson_id);
+     $('#course_idd').val(lesson_id);
   $.ajax({
     url:"{{ url('trainer/get_lesson_section') }}/"+ lesson_id,
    method:"get",
    success:function(data)
    {
-    console.log(data);
-        $('#course_idd').val(data.section.course_id);
-        $('#course_ids').val(data.section.course_id);
+    console.log(data.section);
+        // $('#course_idd').val(data.section.course_id);
+        // $('#course_ids').val(data.section.course_id);
   
 
    $('.remove_section').remove();
