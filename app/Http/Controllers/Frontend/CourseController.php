@@ -83,7 +83,13 @@ class CourseController extends Controller
     public function create(Request $request)
     {
       // echo "<pre>"; print_r($request->all()); exit();
-
+      if(isset($request->free_course) && $request->free_course=='on')
+        {
+          $free_course = 1;
+        }else{
+          $free_course = 0;
+        }
+        // print_r($free_course); exit();
         if ($request->hasfile('image')) {
             $postData = $request->only('image');
 
@@ -136,10 +142,11 @@ class CourseController extends Controller
 
         $category_id = implode(',', $request->category_id);
         $author = implode(',', $request->author);
+        
 
 
 //        $category = Course::create(['category_id'=>$category_id,'name'=>$request->name,'description'=>$request->description,'duration'=>$request->duration,'price'=>$request->price, 'discount_price'=>$request->discount_price,'attach_doc'=>$attachments,'thumbnail'=>$imgname,'user_id'=>Auth::id()]);
-        $category = Course::create(['category_id'=>$category_id,'name'=>$request->name,'description'=>$request->briefdescription,'short_description'=>$request->shortdescription,'duration'=>$request->duration,'price'=>$request->price, 'discount_price'=>$request->discount_price,'thumbnail'=>$imgname,'promo_video'=>$promo_video,'user_id'=>Auth::id(),'auther'=>$author,'producer_name'=>$request->producer_name,'attach_doc'=>$names]);
+        $category = Course::create(['category_id'=>$category_id,'name'=>$request->name,'description'=>$request->briefdescription,'short_description'=>$request->shortdescription,'duration'=>$request->duration,'price'=>$request->price, 'discount_price'=>$request->discount_price,'thumbnail'=>$imgname,'promo_video'=>$promo_video,'user_id'=>Auth::id(),'auther'=>$author,'producer_name'=>$request->producer_name,'attach_doc'=>$names,'free_course'=>$free_course]);
 
         if ($category){
            return ['status'=>1, 'course'=>$category];
@@ -166,10 +173,10 @@ class CourseController extends Controller
      */
     public function show()
     {
-          $categories = Category::all();
-          $trainer = User::where('role_id',3)->where('is_trainer',1)->get();
-          $producer = User::where('role_id',4)->where('is_trainer',0)->get();
-          return view('backend.trainer.courses.add', compact('categories','trainer','producer'));
+        $categories = Category::all();
+        $trainer = User::where('role_id',3)->where('is_trainer',1)->get();
+        $producer = User::where('role_id',4)->where('is_trainer',0)->get();
+        return view('backend.trainer.courses.add', compact('categories','trainer','producer'));
     }
 
     /**
@@ -201,27 +208,30 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
-    {   
-      // return $request;
-       // dd($request);
+    {
       // echo "<pre>"; print_r($request->all()); exit();
+      if(isset($request->free_course) && $request->free_course=='on')
+        {
+          $free_course = 1;
+        }else{
+          $free_course = 0;
+        }
         $slider = Course::find($request->id);
-        // dd($slider);
         if($request->hasfile('image')){
 
             $postData = $request->only('image');
 
-              $file = $postData['image'];
+            $file = $postData['image'];
 
-              $fileArray = array('image' => $file);
+            $fileArray = array('image' => $file);
 
-              // Tell the validator that this file should be an image
-              $rules = array(
-                  'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000' // max 10000kb
-              );
+            // Tell the validator that this file should be an image
+            $rules = array(
+                'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000' // max 10000kb
+            );
 
-              // Now pass the input and rules into the validator
-              $validator = Validator::make($fileArray, $rules);
+            // Now pass the input and rules into the validator
+            $validator = Validator::make($fileArray, $rules);
 
 
             // Check to see if validation fails or passes
@@ -230,16 +240,16 @@ class CourseController extends Controller
                 return redirect()->back()->with('alert','Upload Image only')->withInput();
             }
 
-              $destinationpath=public_path("course/".$slider->image);
-              File::delete($destinationpath);
-              $file=$request->file('image');
-              $filename = str_replace(' ', '', $file->getClientOriginalName());
-              $ext=$file->getClientOriginalExtension();
-              $imgname=uniqid().$filename;
-              $destinationpath=public_path('course');
-              $file->move($destinationpath,$imgname);
-          }else{
-              $imgname=$slider->thumbnail;
+            $destinationpath=public_path("course/".$slider->image);
+            File::delete($destinationpath);
+            $file=$request->file('image');
+            $filename = str_replace(' ', '', $file->getClientOriginalName());
+            $ext=$file->getClientOriginalExtension();
+            $imgname=uniqid().$filename;
+            $destinationpath=public_path('course');
+            $file->move($destinationpath,$imgname);
+        }else{
+            $imgname=$slider->thumbnail;
 
         }
 
@@ -258,38 +268,30 @@ class CourseController extends Controller
           $names = $slider->attach_doc;
         }
 
-          if ($request->hasfile('promo_video')) {
-              $file = $request->file('promo_video');
-              $filename = str_replace(' ', '', $file->getClientOriginalName());
-              $ext = $file->getClientOriginalExtension();
-              $promo_video = uniqid() . $filename;
-              $destinationpath = public_path('course/attachment');
-              $file->move($destinationpath, $name[$key]);
+        if ($request->hasfile('promo_video')) {
+            $file = $request->file('promo_video');
+            $filename = str_replace(' ', '', $file->getClientOriginalName());
+            $ext = $file->getClientOriginalExtension();
+            $promo_video = uniqid() . $filename;
+            $destinationpath = public_path('course/attachment');
+            $file->move($destinationpath, $name[$key]);
 
-        
         }else{
-        
           $promo_video = $slider->promo_video;
         }
 
 
         $category_id = implode(',', $request->category_id);
-        if($request->hasfile('auther')){
-          $author = implode(',', $request->author);
-        }else{
-          $author = $slider->author;
-        }
+        $author = implode(',', $request->author);
 
 
-        $category = Course::where('id',$request->id)->update(['category_id'=>$category_id,'name'=>$request->name,'description'=>$request->description,'short_description'=>$request->shortdescription,'duration'=>$request->duration,'price'=>$request->price, 'discount_price'=>$request->discount_price,'thumbnail'=>$imgname,'promo_video'=>$promo_video,'user_id'=>Auth::id(),'auther'=>$author,'producer_name'=>$request->producer_name,'attach_doc'=>$names]);
+        $category = Course::where('id',$request->id)->update(['category_id'=>$category_id,'name'=>$request->name,'description'=>$request->briefdescription,'short_description'=>$request->shortdescription,'duration'=>$request->duration,'price'=>$request->price, 'discount_price'=>$request->discount_price,'thumbnail'=>$imgname,'promo_video'=>$promo_video,'user_id'=>Auth::id(),'auther'=>$author,'producer_name'=>$request->producer_name,'attach_doc'=>$names,'free_course'=>$free_course]);
 
         if ($category){
-            // return ['status'=>1, 'course'=>$category];
-            return redirect()->back();
+            return ['status'=>1, 'course'=>$category];
         }
 
     }
-
 
     /**
      * Remove the specified resource from storage.
