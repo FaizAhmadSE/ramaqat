@@ -1,5 +1,5 @@
 <head>
-    <!------ Include the above in your HEAD tag ---------->head>
+
 </head>
 <style>
     /* carousel */
@@ -65,10 +65,10 @@
     /*    position: relative;*/
     /*}*/
 
-    /*#basicSlider img {*/
-    /*    width: 65px;*/
-    /*    height: 65px;*/
-    /*}*/
+    #basicSlider img {
+            width: 56px !important;
+            height: 55px !important;
+        }
 
     /*#basicSlider .MS-content {*/
     /*    white-space: nowrap;*/
@@ -90,14 +90,26 @@
     /*    vertical-align: middle;*/
     /*}*/
 
-    /*#basicSlider .MS-content .item a {*/
-    /*    line-height: 50px;*/
-    /*    vertical-align: middle;*/
-    /*}*/
+    #basicSlider .MS-content .item a {
+        line-height: 31px !important;
+        /*vertical-align: middle;*/
+    }
 
     /*#basicSlider .MS-controls button {*/
     /*    position: absolute;*/
     /*}*/
+
+    #basicSlider .MS-controls .MS-left {
+        top: -25px !important;
+        left: -10px !important;
+    }
+
+    #basicSlider .MS-controls .MS-right {
+        top: -25px !important;
+        right: -10px !important;
+    }
+    
+
 
     /*#basicSlider .MS-controls .MS-left {*/
     /*    top: 35px;*/
@@ -133,7 +145,7 @@
        }
 
      li .white-btn{
-            padding: 12px 15px;
+            padding: 9px 15px;
        }
        li .logout-btn{
           padding: 12px 20px;
@@ -141,6 +153,14 @@
        li .signup{
         padding: 12px 15px;
        }
+
+       .logo_img{
+        width: 70% !important;
+       }
+       .openbtn{
+        width: 90% !important;
+       }
+
     @media (max-width: 991px) {
 
         .container.container_category {
@@ -232,8 +252,8 @@
         }
 
         #basicSlider img {
-            width: 60px;
-            height: 60px;
+            width: 56px !important;
+            height: 55px !important;
         }
     }
 
@@ -280,7 +300,7 @@
 
     <nav>
         <div class="d-flex justify-content-between top-header">
-            <div class="col-3" id="leftmenu">
+            <div class="col-4" id="leftmenu">
                 <ul class="ulDBlockMenu">
                     <li>
                         <img src="{{asset('assets/frontend/img/toggle.png')}}" class="openbtn" id="openbtn" value="1"
@@ -302,7 +322,7 @@
                 </div>
             </div>
 
-            <div class="col-5 text-end" id="hide_on_mobile">
+            <div class="col-4 text-end" id="hide_on_mobile">
                 <ul class="ulDBlock d-sm-block">
 
 
@@ -395,6 +415,10 @@
                                     </div>
                                 @endforeach
                             @endif
+                        </div>
+                        <div class="MS-controls">
+                            <button class="MS-left"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+                            <button class="MS-right"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
                         </div>
                     </div>
                 </div>

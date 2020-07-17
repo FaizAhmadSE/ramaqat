@@ -63,6 +63,16 @@
         .star-plugin-main .fa-star {
             color: #f7941d;
         }
+        #basicSlider .MS-controls .MS-left{
+            top: 10px !important;
+            background: transparent;
+            border:0;
+        }
+        #basicSlider .MS-controls .MS-right{
+            top: 10px !important;
+            background: transparent;
+            border:0;
+        }
 
     </style>
     <!-- couser-detail main section -->
@@ -196,7 +206,7 @@
                 </div>
                 <div class="col-12 col-sm-4"></div>
             </div>
-            <div class="row pb-5">
+            <div class="row pb-2">
                 <div class="col-12 col-sm-8">
                     <!-- Accordian -->
                     <div class="height">
@@ -399,11 +409,15 @@
                         <div class="col-12 col-sm-4"></div>
                     </div>
                 </div>
+    </div>
+    </div>
 
                 <div class="height-2"></div>
-
-                <div class="container pt-5 pb-5">
+                <div class="container">
+        <div class="row pb-2">
+                <div class="container pt-3 pb-2">
                     <div class="row">
+                         <div class="col-sm-2"></div>
                         <div class="col-12 col-sm-8">
                             <div class="row">
                                 <div class="col-sm-1"></div>
@@ -516,17 +530,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4"></div>
+                        <div class="col-sm-2"></div>
                     </div>
                 </div>
+            </div>
             </div>
 
             <div class="height-2"></div>
 
-            <div class="container pt-5 pb-5">
+            <div class="container pt-2 pb-2">
 
                 <!-- Comment Review Section -->
                 <div class="row">
+                    <div class="col-sm-2"></div>
                     <div class="col-12 col-sm-8">
                         <div class="row">
                             <div class="col-sm-1"></div>
@@ -591,7 +607,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4"></div>
+                    <div class="col-sm-2"></div>
                 </div>
                 @if(Auth::check() && Auth::user()->role_id == 3 && Auth::user()->is_trainer!=1)
                     @if(!isset($rate))
@@ -628,9 +644,113 @@
             <!-- End Comment Review Section-->
                 <div class="row"></div>
                 <div class="height-2"></div>
-            </div>
-        </div>
+            </div><div class="container pt-2 pb-2">
 
+                <!-- Comment Review Section -->
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-12 col-sm-8">
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-12 col-sm-11">
+                                <div class="row">
+                                    <div class="col-5">
+
+                                        <ul class="trainer-rating pl-3">
+                                            <li>
+                                                <div class="comment-img">
+                                                    <img class="t-img rounded-circle"
+                                                         src="{{asset('assets/frontend/img/download.png')}}"
+                                                         alt="trainer-star">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="plum-text">
+                                                    <dt>A weak ago</dt>
+                                                </div>
+                                                <div class="plum-text">abcom</div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    <div class="col-7 mb-3">
+                                        <div class="text-center">
+                                            <h6>
+                                                {{-- <dt>Reviews</dt> --}}
+                                        </div>
+                                        <div>
+                                            <ul class="review-rating mb-3">
+                                                <li>
+                                                    <img src="{{asset('assets/frontend/img/star-review.png')}}"
+                                                         alt="trainer-star">
+                                                </li>
+                                                <li>
+                                                    <img src="{{asset('assets/frontend/img/star-review.png')}}"
+                                                         alt="trainer-star">
+                                                </li>
+                                                <li>
+                                                    <img src="{{asset('assets/frontend/img/star-review.png')}}"
+                                                         alt="trainer-star">
+                                                </li>
+                                                <li>
+                                                    <img src="{{asset('assets/frontend/img/star-review.png')}}"
+                                                         alt="trainer-star">
+                                                </li>
+                                                <li>
+                                                    <img src="{{asset('assets/frontend/img/star-r-empty.png')}}"
+                                                         alt="trainer-star">
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                        <div class="comment-description plum-text">
+                                            Jose Marcial Portilla has a BS and MS in Mechanical Engineering from Santa
+                                            Clara University and years of experience as a professional instructor and
+                                            trainer for Data Science and programming.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+                @if(Auth::check() && Auth::user()->role_id == 3 && Auth::user()->is_trainer!=1)
+                    @if(!isset($rate))
+                        <div class="othr_pages_popup" id="gaveFeedbackPopup">
+
+                            <div class="othr_pages_popup_nxt">
+                                <div class="inner---modal">
+                                    <form id="ratingForm_Rat">
+                                        @if(!isset($trainer_check))
+                                            <input type="hidden" name="trainer_id" value="{{$data->user_id}}">
+                                        @endif
+                                        <input type="hidden" name="type">
+                                        <input type="hidden" name="course_id" value="{{$data->id}}">
+                                        <input type="hidden" name="rating" value="0">
+                                        @if(!isset($trainer_check))
+                                            <input type="hidden" name="trainer_rating" value="0">
+                                        @endif
+                                        <textarea class="coment-feedback" placeholder="Write a review" name="message"
+                                                  required></textarea><br>
+                                        <label>Course Rating</label>
+                                        <div class="star-plugin-main user_ratting"></div>
+                                        <br>
+                                        @if(!isset($trainer_check))
+                                            <label>Trainer Rating</label>
+                                            <div class="star-plugin-main trainer_ratting "></div><br>
+                                        @endif
+                                        <button type="submit" class="submit-btn-popup">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                @endif
+            @endif
+            <!-- End Comment Review Section-->
+                <div class="row"></div>
+            </div>
+<div class="height-2"></div>
 
         <!-- Modal -->
         <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

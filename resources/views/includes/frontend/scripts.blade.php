@@ -14,8 +14,11 @@
  <script src="{{asset('assets/frontend/js/multislider.js')}}"></script>
 <script>
 $('#basicSlider').multislider({
-			continuous: true,
-			duration: 2000
+  // 'unPause'
+      duration: 750,
+      interval: 3000
+			// continuous: true,
+			// duration: 2000
 		});
 		$('#mixedSlider').multislider({
 			duration: 750,

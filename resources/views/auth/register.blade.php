@@ -7,9 +7,9 @@
         <div class="flex-center flex-column col-11 col-sm-4 mx-auto">
             <a href="{{url('/')}}">
 
-                <img class="mb-1 img-fluid SiteLogo" src="{{asset('assets/frontend/img/logo.png')}}" alt="Logo"></a>
-            <h1 class="text-hide animated fadeIn mb-1 font45 plum-text mb-2">أهلا وسهلا بك إلى رمقات</h1>
-            <div class="inputform plum-bg text-center white-text">
+                <img class="mb-4 img-fluid SiteLogo" src="{{asset('assets/frontend/img/logo.png')}}" alt="Logo"></a>
+            <h1 class="text-hide animated fadeIn  font45 plum-text mb-3">أهلا وسهلا بك إلى رمقات</h1>
+            <div class="inputform inputform-reg plum-bg text-center white-text">
                 <h2>Sign Up</h2>
                 <!-- Default form row -->
                 <form method="POST" action="{{ route('register') }}">

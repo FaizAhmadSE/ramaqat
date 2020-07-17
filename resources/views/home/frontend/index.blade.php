@@ -71,6 +71,8 @@
         }
 
         .carousel_item_footer {
+            height: 80px;
+            background: #484848;
             overflow: hidden;
             position: relative;
             bottom: 0px;
@@ -81,7 +83,7 @@
         }
 
         .carousel_item_footer div {
-            padding: 5px;
+            padding: 1px 0px 0px 7px;
         }
 
         .carousel_item_footer div p:nth-child(1) {
@@ -534,6 +536,31 @@
             }
         }
 
+        .card-height{
+            height: 50% !important;
+        }
+        .card-height img{
+            height: 230px !important;
+        }
+        .course-rating-list.float-right{
+            margin-top: -12px !important;
+        }
+        .max-height-div{
+            max-height: 230px !important;
+        }
+        .font-25{
+            font-size: 0px;
+        }
+        .font-25 h1{
+            font-size: 30px;
+        }
+        .trainee-img img{
+            max-width: 80%
+        }
+        .card-heightt{
+            height: 100px;
+        }
+
         /* end */
     </style>
 
@@ -568,6 +595,10 @@
                         </div>
                     </div>
                 </div>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+                   
+                  </ol>
             @endif
             @if(isset($slider))
 
@@ -585,6 +616,11 @@
                         </div>
                     </div>
                 @endforeach
+                <ol class="carousel-indicators">
+                    @foreach($slider as $x => $slide)
+                        <li data-target="#carousel-example-2" data-slide-to="{{$x}}" class="<?php if($x==0) echo 'active'; ?>"></li>
+                    @endforeach
+                  </ol>
             @endif
         </div>
 
@@ -616,22 +652,22 @@
         <div class="container over-view-box">
             <div class="row text-center">
                 <div class="col-12 col-sm-4 text-center over-view">
-                    <div><img src="{{asset('assets/frontend/img/customer.png')}}"></div>
-                    <div class="ml-3">
+                    <div class="float-left"><img src="{{asset('assets/frontend/img/customer.png')}}"></div>
+                    <div class="ml-4  float-left">
                         <span class="font-23"><b>100,000 online courses</b></span><br>
                         <span>Explore a veriety of fresh topics</span>
                     </div>
                 </div>
                 <div class="col-12 col-sm-4 text-center over-view">
-                    <img src="{{asset('assets/frontend/img/instructions.png')}}">
-                    <div class="ml-3">
+                    <div class="float-left"><img src="{{asset('assets/frontend/img/instructions.png')}}"></div>
+                    <div class="ml-4 float-left">
                         <span class="font-23"><b>Expert instruction</b></span><br>
                         <span>Find the right instructor for you</span>
                     </div>
                 </div>
                 <div class="col-12 col-sm-4 text-center over-view">
-                    <img src="{{asset('assets/frontend/img/time.png')}}">
-                    <div class="ml-3">
+                    <div class="float-left"><img src="{{asset('assets/frontend/img/time.png')}}"></div>
+                    <div class="ml-4 float-left">
                         <span class="font-23"><b>Lifetime access</b></span><br>
                         <span>Learn on your schedule</span>
                     </div>
@@ -640,9 +676,9 @@
         </div>
     </div>
 
-    <div class="heading mt-3 mt-sm-4 mt-md-5">Latest Courses</div>
+    <div class="heading mt-3 mt-sm-4 mt-md-4">Latest Courses</div>
 
-    <div class="container mt-2 mt-sm-2 mt-md-3 mb-5">
+    <div class="mt-2 mt-sm-2 mt-md-3 max-height-div " >
 
         <div class="col-sm-12" id="img_slider">
             <!-- block 1 -->
@@ -668,7 +704,7 @@
 
                                             <div class="col-10 col-sm-10 col-md-4 p-mob auto_margin">
                                                 <a href="{{route('detail-course',['id'=>$c->id])}}">
-                                                    <div class="card">
+                                                    <div class="card card-height">
                                                         <img class="card-img-top"
                                                              src="{{asset('course/'.$c->thumbnail)}}"
                                                              alt="Card image cap">
@@ -682,7 +718,7 @@
                                                                 <img class="rounded-circle full-img" src="{{asset('users/'.$c->users['image'])}}">
                                                             </div>
                                                         </div>
-                                                        <div class="col-6 pr-0">
+                                                        <div class="col-10 pr-0">
                                                             <a href="{{route('trainer_profile',['id'=>$c->users->id])}}">
 
                                                             <div class="trainer-n mb-1">
@@ -690,14 +726,13 @@
                                                             </div></a>
                                                             <div class="course-d">
                                                                 {{$c->name}}
-                                                                -{{$c->lessons->count()}} Courses in 1 <br>
+                                                                -{{$c->lessons->count()}} Courses in 1 
                                                                 {!! $c->description !!}
 
 
                                                             </div>
-                                                        </div>
-                                                        <div class="col-4 text-center p-0">
-                                                            <ul class="course-rating-list">
+                                                            <div class="col-10 text-center p-0">
+                                                            <ul class="course-rating-list float-right">
                                                                 <li>
                                                                     <img src="{{asset('assets/frontend/img/star-small-fill.png')}}">
                                                                 </li>
@@ -713,8 +748,6 @@
                                                                 <li>
                                                                     <img src="{{asset('assets/frontend/img/star-small.png')}}">
                                                                 </li>
-                                                            </ul>
-                                                            <ul class="course-rating-list">
                                                                 <li>
                                                                     <span>4.8</span>
                                                                 </li>
@@ -722,7 +755,12 @@
                                                                     (123)
                                                                 </li>
                                                             </ul>
+                                                           {{--  <ul class="course-rating-list">
+                                                                
+                                                            </ul> --}}
                                                         </div>
+                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                             <!--
@@ -768,7 +806,7 @@
 
                                             <div class="col-10 col-sm-10 col-md-4 p-mob auto_margin">
                                                 <a href="{{route('detail-course',['id'=>$c->id])}}">
-                                                    <div class="card">
+                                                    <div class="card card-height">
                                                         <img class="card-img-top"
                                                              src="{{asset('course/'.$c->thumbnail)}}"
                                                              alt="Card image cap">
@@ -783,7 +821,7 @@
                                                                      src="{{asset('users/'.$c->users['image'])}}">
                                                             </div>
                                                         </div>
-                                                        <div class="col-6 pr-0">
+                                                        <div class="col-10 pr-0">
                                                             <a href="{{route('trainer_profile',['id'=>$c->users->id])}}">
                                                                 <a href="{{route('trainer_profile',['id'=>$c->users->id])}}">
 
@@ -794,14 +832,13 @@
                                                             <div class="course-d">
 
                                                                 {{$c->name}}
-                                                                -{{$c->lessons->count()}} Courses in 1 <br>
+                                                                -{{$c->lessons->count()}} Courses in 1 
                                                                 {!! $c->description !!}
 
 
                                                             </div>
-                                                        </div>
-                                                        <div class="col-4 text-center p-0">
-                                                            <ul class="course-rating-list">
+                                                            <div class="col-10 text-center p-0">
+                                                            <ul class="course-rating-list float-right">
                                                                 <li>
                                                                     <img
                                                                         src="{{asset('assets/frontend/img/star-small-fill.png')}}">
@@ -822,8 +859,6 @@
                                                                     <img
                                                                         src="{{asset('assets/frontend/img/star-small.png')}}">
                                                                 </li>
-                                                            </ul>
-                                                            <ul class="course-rating-list">
                                                                 <li>
                                                                     <span>4.8</span>
                                                                 </li>
@@ -831,7 +866,12 @@
                                                                     (123)
                                                                 </li>
                                                             </ul>
+                                                           {{--  <ul class="course-rating-list">
+                                                                
+                                                            </ul> --}}
                                                         </div>
+                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -863,12 +903,12 @@
                 <div id="multi-item-example2" class="carousel slide carousel-multi-item" data-ride="carousel">
                     <--.Indicators-->
                     <div class="row">
-                        <div class="col-md-1 controls-top p-0 text-end hide_on_mobile">
+                        {{-- <div class="col-md-1 controls-top p-0 text-end hide_on_mobile">
                             <a class="btn-floating" href="#multi-item-example2" style="color: #570055"
                                data-slide="prev"><i class="fa fa-chevron-left"></i></a>
-                        </div>
+                        </div> --}}
                         <!--Slides-->
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <div class="carousel-inner" role="listbox">
 
 
@@ -876,9 +916,9 @@
 
 
     <!-- Product Slider End -->
-    <div class="height-2 mt-sm-4 mt-md-5"></div>
+    <div class="height-2 mt-sm-4 "></div>
 
-    <div class="col-12 col-sm-10 offset-md-1 mt-sm-4 mt-md-5 mb-sm-3 mb-md-5">
+    <div class="col-12 col-sm-10 offset-md-1 mt-sm-4 mt-md-3 mb-sm-3 mb-md-3" style="">
         <div class="row text-center">
             <div class="col-12 col-sm-9 text-right">
                 <div class="plum-text font-25">{!! $setting->about_us_description !!}
@@ -917,7 +957,7 @@
     <div class="heading mt-3 mt-sm-4 mt-md-5 mb-3 mb-sm-3 mb-md-3">Different Courses
     </div>
 
- <div class="container my-4">
+ <div class=" my-4">
 
     <!-- <hr class="my-4"> -->
 
@@ -940,35 +980,35 @@
       <--/.Indicators-->
       <div class="row">
         <div class="col-1 text-center">
-            <a class="btn-floating arrow_newtop" href="#multi-item-example" data-slide="prev">
+           {{--  <a class="btn-floating arrow_newtop" href="#multi-item-example" data-slide="prev">
                 <i class="fa fa-chevron-left"></i>
-            </a>
+            </a> --}}
         </div>
         <div class="col-10">
           <!--Slides-->
-          <div class="carousel-inner" role="listbox">
+          <div class="carousel-inner " role="listbox">
 
             <!--First slide-->
             <div class="carousel-item active">
 
               <div class="row">
                   @foreach($all as $a)
-                <div class="col-md-3">
+                <div class="col-md-3 mb-1 mt-1">
                   <div class="card mb-2 carousel_border">
                       <a href="{{route('detail-course',['id'=>$c->id])}}">
-                          <img class="card-img-top" src="{{asset('course/'.$a->thumbnail)}}"
+                          <img class="card-img-top card-heightt" src="{{asset('course/'.$a->thumbnail)}}"
                          alt="Card image cap"></a>
                     <div class="card-body carousel_border main_bg_color">
                         <div class="row">
                             <div class="col-3">
-                                <img class="card-img-top rounded-circle" src="{{asset('users/'.$a->users['image'])}}" alt="image" style="width: 45px;height: 45px;">
+                                <img class="card-img-top rounded-circle" src="{{asset('users/'.$a->users['image'])}}" alt="image" style="width: 50px;height: 45px;">
                             </div>
                             <div class="col-9" style="color: white">
-                                <p class="m-0">{{$a->name}}</p>
-                                <p class="m-0" style="font-size: 12px;">{{$a->category->name}}</p>
+                                <p class="m-0" style="font-size: 11px;">{{$a->name}}</p>
+                                <p class="m-0" style="font-size: 11px;">{{$a->category->name}}</p>
                                 <a href="{{route('trainer_profile',['id'=>$a->users->id])}}">
 
-                                    <p class="m-0" style="font-size: 11px;">{{$a->users['name']}}</p></a>
+                                    <p class="m-0" style="font-size: 11px;color:white;">{{$a->users['name']}}</p></a>
                                 <p class="float-right m-0" style="font-size:10px">
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
@@ -992,24 +1032,24 @@
             <!--/.First slide-->
 
             <!--Second slide-->
-            <div class="carousel-item">
+           {{--  <div class="carousel-item">
 
               <div class="row">
                   @foreach($latest as $a)
-                      <div class="col-md-3">
+                      <div class="col-md-3 mb-1 mt-1">
                           <div class="card mb-2 carousel_border">
                               <a href="{{route('detail-course',['id'=>$c->id])}}">
 
-                              <img class="card-img-top" src="{{asset('course/'.$a->thumbnail)}}"
+                              <img class="card-img-top card-heightt" src="{{asset('course/'.$a->thumbnail)}}"
                                    alt="Card image cap"></a>
                               <div class="card-body carousel_border main_bg_color">
                                   <div class="row">
                                       <div class="col-3">
-                                          <img class="card-img-top rounded-circle" src="{{asset('users/'.$a->users['image'])}}" alt="image" style="width: 45px;height: 45px;">
+                                          <img class="card-img-top rounded-circle" src="{{asset('users/'.$a->users['image'])}}" alt="image" style="width: 50px;height: 45px;">
                                       </div>
                                       <div class="col-9" style="color: white">
-                                          <p class="m-0">{{$a->name}}</p>
-                                          <p class="m-0" style="font-size: 12px;">{{$a->category->name}}</p>
+                                          <p class="m-0" style="font-size: 10px;">{{$a->name}}</p>
+                                          <p class="m-0" style="font-size: 10px;">{{$a->category->name}}</p>
                                           <a href="{{route('trainer_profile',['id'=>$a->users->id])}}">
 
                                               <p class="m-0" style="font-size: 11px;">{{$a->users['name']}}</p></a>
@@ -1031,15 +1071,15 @@
 
               </div>
 
-            </div>
+            </div> --}}
             <!--/.Second slide-->
           </div>
           <!--/.Slides-->
         </div>
         <div class="col-1 text-center">
-            <a class="btn-floating arrow_newtop" href="#multi-item-example" data-slide="next">
+           {{--  <a class="btn-floating arrow_newtop" href="#multi-item-example" data-slide="next">
                 <i class="fa fa-chevron-right"></i>
-            </a>
+            </a> --}}
         </div>
       </div>
         <!--/.Carousel Wrapper-->
@@ -1312,7 +1352,7 @@
                                     </div>
                                     <div class="carousel-item active col-sm-12 col-md-4 mb-5">
                                         <div class="student-box shadow-sm bg-white rounded">
-                                            <div class="d-flex">
+                                            <div class="d-flex pl-3 pr-3">
                                                 <div class="student-img">
                                                     <img class="img-fluid rounded-circle"
                                                          src="{{asset('assets/frontend/img/Mask Group 1.png')}}">

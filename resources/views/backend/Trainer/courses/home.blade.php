@@ -12,6 +12,15 @@
         position: relative;
         
     }
+    #table_id_filter input{
+        border :0px !important;
+    }
+    #table_id_length select{
+        border :0px !important;
+        border-radius: 0px !important;
+        border-bottom: 2px solid #ced4da !important;
+    }
+
 </style>
 
     {{--    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>--}}

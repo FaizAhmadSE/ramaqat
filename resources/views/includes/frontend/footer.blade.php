@@ -1,6 +1,6 @@
 <footer class="white-bg">
     <div class="container">
-        <div class="row">
+        <div class="row mb-5">
             <div class="col-12 col-sm-4 text-center mb-5">
                <div>
                Our mission is to provide a free, world-class education to anyone, anywhere.

@@ -4,9 +4,9 @@
     <div class="flex-center flex-column col-11 col-sm-4 mx-auto">
         <a href="{{url('/')}}">
 
-            <img class="mb-2 SiteLogo" src="{{asset('assets/frontend/img/logo.png')}}" alt="Logo"></a>
-        <h1 class="text-hide animated fadeIn mb-2 font45 plum-text mb-2">أهلا وسهلا بك إلى رمقات</h1>
-        <div class="inputform plum-bg text-center white-text">
+            <img class="m-4 SiteLogo" src="{{asset('assets/frontend/img/logo.png')}}" alt="Logo"></a>
+        <h1 class="text-hide animated fadeIn mb-4 font45 plum-text ">أهلا وسهلا بك إلى رمقات</h1>
+        <div class="inputform login-input-form plum-bg text-center white-text">
             <h2>Sign in</h2>
             <!-- Default form row -->
             <form method="POST" action="{{ route('login_user') }}">
@@ -32,10 +32,10 @@
 
             </form>
             <div>
-                <ul class="social-login">
-                    <li><img src="{{asset('assets/frontend/img/fb.png')}}" alt="facebook"></li>
-                    <li><img src="{{asset('assets/frontend/img/google.png')}}" alt="google"></li>
-                    <li><img src="{{asset('assets/frontend/img/apple.png')}}" alt="apple"></li>
+                <ul class="social-login login-social-icon">
+                    <li><img src="{{asset('assets/frontend/img/fb.png')}}" alt="facebook"><span>Sign in With Facebook</span></li>
+                    <li><img src="{{asset('assets/frontend/img/google.png')}}" alt="google"><span>Sign in With Google</span></li>
+                    <li><img src="{{asset('assets/frontend/img/apple.png')}}" alt="apple"><span>Sign in With Apple ID</span></li>
                 </ul>
             </div>
             <!-- Default form row -->
